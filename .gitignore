@@ -1,3 +1,9 @@
+test/
+bin/*
+release/*
+run-test
+*.odt
+
 # Prerequisites
 *.d
 
