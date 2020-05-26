@@ -7,13 +7,13 @@
 #include <stdlib.h>
 
 
-static struct json_obj *json_parse_json_obj(char **buf_ptr);
+static json_obj_t json_parse_json_obj(char **buf_ptr);
 
-static struct json_arr *
+static json_arr_t
 json_parse_json_arr(char **buf_ptr)
 {
-    struct json_arr *j_arr = NULL;
-    struct json_value *json_value;
+    json_arr_t j_arr = NULL;
+    json_t json_value;
     enum json_dtype json_datatype;
     void *json_data;
 
@@ -82,11 +82,11 @@ json_parse_json_arr(char **buf_ptr)
     }
 }
 
-static struct json_obj *
+json_obj_t
 json_parse_json_obj(char **buf_ptr)
 {
-    struct json_obj *j_obj = NULL;
-    struct json_value *json_value;
+    json_obj_t j_obj = NULL;
+    json_t json_value;
     enum json_dtype json_tag;
     void *json_data;
     char *key;
@@ -183,14 +183,14 @@ read_json_file(const char *file_path)
     return buffer;
 }
 
-struct json_value *
+json_t 
 json_parse(char *file_path)
 {
     char *json_buffer = NULL; // contains all the contents of the json file
     char *tmp_buffer; 
-    struct json_value *json_root = NULL; // json root
+    json_t json_root = NULL; // json root
     void *j_val = NULL;
-    enum json_dtype dtype = 0;
+    enum json_dtype dtype;
 
     json_buffer = read_json_file(file_path);
     if (json_buffer == NULL) {
