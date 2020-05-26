@@ -82,7 +82,7 @@ json_parse_json_arr(char **buf_ptr)
     }
 }
 
-json_obj_t
+static json_obj_t
 json_parse_json_obj(char **buf_ptr)
 {
     json_obj_t j_obj = NULL;
